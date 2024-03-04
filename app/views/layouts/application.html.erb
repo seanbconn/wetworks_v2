@@ -2,7 +2,7 @@
 <html>
   <head>
     <%# Replace with your application name %>
-    <title>Starter App</title>
+    <title>Periscope-Amber Health</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -12,7 +12,7 @@
 
   <body>
     <p>
-      <% @user = User.find_by({ "id" => session["user_id"] }) %>
+      <% @user = User.find_by({ "id" => session["email"] }) %>
       <% if @user == nil %>
         <a href="/users/new">Sign Up</a> | <a href="/login">Login</a>
       <% else %>
