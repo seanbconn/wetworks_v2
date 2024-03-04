@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%# Replace with your application name %>
+    <title>Starter App</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <link rel="stylesheet" href="/stylesheets/application.css">
+  </head>
+
+  <body>
+    <p>
+      <% @user = User.find_by({ "id" => session["user_id"] }) %>
+      <% if @user == nil %>
+        <a href="/users/new">Sign Up</a> | <a href="/login">Login</a>
+      <% else %>
+        <%= @user["first_name"] %> | <a href="/logout">Logout</a>
+      <% end %>
+    </p>
+
+    <p>
+      <%= flash["notice"] %>
+    </p>
+
+    <%= yield %>
+  </body>
+</html>
