@@ -3,15 +3,16 @@ class UsersController < ApplicationController
   end
 
   def create
-    if User.find_by({ "username" => params["username"] }) == nil
+    if User.find_by({ "email" => params["email"] }) == nil
       @user = User.new
-      @user["username"] = params["username"]
-      @user["real_name"] = params["real_name"]
+      @user["first_name"] = params["first_name"]
+      @user["last_name"] = params["last_name"]
+      @user["email"] = params["email"]
       @user["password"] = BCrypt::Password.create(params["password"])
       @user.save
       redirect_to "/login"
     else
-      flash["notice"] = "Username taken."
+      flash["notice"] = "The email you selected is already registered to an account."
       redirect_to "/users/new"
     end
   end
